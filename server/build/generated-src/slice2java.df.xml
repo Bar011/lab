@@ -1,0 +1,14 @@
+<state>
+  <timestamp value='1588985626909' />
+  <sourceSet name='default'>
+    <source name='/Users/Beatriz/Downloads/lab/slice/domain.ice'>
+      <file name='/Users/Beatriz/Downloads/lab/server/build/generated-src/cl/ucn/disc/pdis/lab/zeroice/model/_Marker.java' />
+      <file name='/Users/Beatriz/Downloads/lab/server/build/generated-src/cl/ucn/disc/pdis/lab/zeroice/model/Engine.java' />
+      <file name='/Users/Beatriz/Downloads/lab/server/build/generated-src/cl/ucn/disc/pdis/lab/zeroice/model/EnginePrx.java' />
+      <file name='/Users/Beatriz/Downloads/lab/server/build/generated-src/cl/ucn/disc/pdis/lab/zeroice/model/_EnginePrxI.java' />
+    </source>
+    <arg value='/usr/local/bin/slice2java' />
+    <arg value='-I/usr/local/share/ice/slice' />
+    <arg value='--debug' />
+  </sourceSet>
+</state>
