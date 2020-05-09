@@ -28,31 +28,62 @@ public final class EngineImpl implements Engine {
     public String getDate(Current current) {
         return ZonedDateTime.now().format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
     }
-
+    /**
+     *
+     * @param rut
+     * @param current The Current object for the invocation.
+     * @return digito
+     * @author http://cristobaldiaz.cl/blog/validacion-del-rut/ (formula)
+     */
     @Override
     public String getDigitoVerificador(String rut, Current current) {
-        int m = 0, r =1 ;
+        /**
+         * inicializo variables
+         */
+        int mul = 0, sum =1 ;
         char dv = 0;
         String dig = null;
-        try {
-            rut = rut.toUpperCase();
+        try {/**
+         * Try catch para controlar excepciones
+         */
+            /**
+             * funcion que devuelve la cadena en mayúsculas
+             */
+            rut = rut.toUpperCase(); /**
+             * funcion para ignorar "."
+             */
             rut = rut.replace(".", "");
+            /**
+             * funcion para ignorar el "-"
+             */
             rut = rut.replace("-", "");
 
+            /**
+             * Variable auxiliar para redimensionar bien el rut
+             */
             int aux = Integer.parseInt(rut.substring(0, rut.length() - 1));
 
-            // retorna un entero dado un string
+            /**
+             * variable que captura el ultimo digito de la cadena de strings que es el rut.
+             */
             dv = rut.charAt((rut.length() - 1));
-            //retorno del char dado el rut
+            /**
+             * Recorro el arreglo de atras hacia adelante multiplicando cada numero por el multiplicador,
+             * agregandolo a la suma y sacando los restos
+             */
             for (;aux != 0; aux/= 10) {
-                r = (r + aux % 10 * (9 - m++ % 6)) % 11;
+                sum = (sum + aux % 10 * (9 - mul++ % 6)) % 11;
             }
-            if (dv == (char) (r != 0 ? r + 47 : 75)) {
+            /**
+             * se prueba la igualdad entre la variable dv dada y la calculada
+             * si coinciden, retorna el digito, si no, envía un mensaje de advertencia.
+             */
+            if (dv == (char) (sum != 0 ? sum + 47 : 75)) {
                 dig = String.valueOf(dv);
             }else {
                 dig= "Error";
             }
-            //codificar aqui el metodo
+
         } catch (java.lang.NumberFormatException e) {
         } catch (Exception e) {
         }
